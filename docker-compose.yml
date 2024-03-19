@@ -1,0 +1,38 @@
+version: '3.0'
+
+services:
+  master:
+    build:
+      context: .
+      dockerfile: docker/master.dockerfile
+    environment:
+      - shards=shard-1:9090,shard-2:9091,shard-3:9092,shard-4:9093
+    ports:
+      - "8080:8080"
+  shard-1:
+    build:
+      context: .
+      dockerfile: docker/shard.dockerfile
+    environment:
+       - PORT=9090
+
+  shard-2:
+    build:
+      context: .
+      dockerfile: docker/shard.dockerfile
+    environment:
+       - PORT=9091
+
+  shard-3:
+    build:
+      context: .
+      dockerfile: docker/shard.dockerfile
+    environment:
+       - PORT=9092
+
+  shard-4:
+    build:
+      context: .
+      dockerfile: docker/shard.dockerfile
+    environment:
+       - PORT=9093
